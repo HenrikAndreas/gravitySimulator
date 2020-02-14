@@ -2,11 +2,7 @@ var canvas = document.getElementById("mainCanvas");
 var graphics = canvas.getContext("2d");
 var planetList = [];
 
-// tython = new Planet(200, 200, 10);
-// naboo = new Planet(300, 300, 40);
-// naboo.setVelocity(0.3, 0);
-// tatooine = new Planet(600, 100, 20);
-// var planetList = [tython, naboo, tatooine];
+// Generating random number --> For spawning planets
 function randNum(min, max) {
     return Math.random() * (max - min) + min;
 }

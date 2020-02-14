@@ -77,7 +77,7 @@ class Planet {
         graphics.beginPath();
         graphics.arc(this.getPosition()[0], this.getPosition()[1], this.radius, 0, 2* Math.PI);
         graphics.strokeStyle = "#FFFFFF";
-        graphics.fillstyle = "#FFFFFF";
+        graphics.fillStyle = "#FFFFFF";
 
         graphics.stroke();
         graphics.fill();
