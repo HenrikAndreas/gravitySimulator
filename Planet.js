@@ -5,7 +5,7 @@ class Planet {
         this.position = [xPos, yPos];
         this.velocity = [0, 0];
         this.acceleration = [0, 0];
-        this.maxVelocity = 7.5;
+        this.maxVelocity = 8;
         this.radius = this.mass * 0.35;
     }
 
@@ -46,7 +46,7 @@ class Planet {
         //Distance between planets
         var distance = Math.sqrt(Math.pow(force[0], 2) + Math.pow(force[1], 2));
         
-        if (distance > this.radius) {
+        if (distance > this.radius + planet.getRadius()) {
             // Vector magnitude
             force[0] = force[0] / distance;
             force[1] = force[1] / distance;
@@ -81,7 +81,9 @@ class Planet {
 
 
     }
-
+    getRadius() {
+        return this.radius;
+    }
     getMass() {
         return this.mass;
     }

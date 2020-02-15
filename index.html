@@ -6,9 +6,11 @@
         <link rel="stylesheet" type="text/css" href="main.css"></head>
 
     <body>
-        <canvas style="border:2px solid lightgray;" id="mainCanvas" width="1320" height="700"></canvas>
+        <canvas style="border:2px solid lightgray;" id="mainCanvas" onclick="addPlanet(event)" width="1320" height="700"></canvas>
         <button id="reset" class="button" onclick="reset()">Reset</button>
         <button id="start" class="button" onclick="setup()">Start</button>
+        <button id="absorb" class="button" onclick="setAbsorption()">Absorb</button>
+
 
         <script src="Planet.js"></script>
         <script src="Main.js"></script>
