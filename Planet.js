@@ -16,7 +16,7 @@ class Planet {
                 planetList[i].applyForce(force);
             }
         }
-
+        // Handling maximum velocity
         if (this.velocity[0] > this.maxVelocity && this.velocity[0] > 0) {
             this.velocity[0] = this.maxVelocity;
         }
@@ -38,6 +38,23 @@ class Planet {
 
         this.acceleration[0] = 0;
         this.acceleration[1] = 0;
+    }
+    // Get list of planets to remove
+    getCollidingPlanets(planetList) {
+        var planets = []
+        for (var i = 0; i < planetList.length; i++) {
+            if (planetList[i] != this) {
+                if (this.mass > planetList[i].getMass()) {
+                    var xDistance = planetList[i].getPosition()[0] - this.position[0];
+                    var yDistance = planetList[i].getPosition()[1] - this.position[1];
+                    var distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+                    if (distance < this.radius + planetList[i].getRadius()) {
+                        planets.push(planetList[i]);
+                    }
+                }
+            }
+        }
+        return planets;
     }
 
     attract(planet) {
