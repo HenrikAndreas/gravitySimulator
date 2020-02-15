@@ -7,7 +7,6 @@ class Planet {
         this.acceleration = [0, 0];
         this.maxVelocity = 7.5;
         this.radius = this.mass * 0.35;
-        
     }
 
     move(planetList) {

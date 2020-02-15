@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>Gravity Simulation</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
-    </head>
+        <link rel="stylesheet" type="text/css" href="main.css"></head>
 
     <body>
-        <canvas style="border:2px solid lightgray;" id="mainCanvas" width="1080" height="720"></canvas>
+        <canvas style="border:2px solid lightgray;" id="mainCanvas" width="1320" height="700"></canvas>
+        <button id="reset" class="button" onclick="reset()">Reset</button>
+        <button id="start" class="button" onclick="setup()">Start</button>
 
         <script src="Planet.js"></script>
         <script src="Main.js"></script>
