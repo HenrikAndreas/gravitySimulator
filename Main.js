@@ -17,7 +17,6 @@ function setAbsorption() {
     absorption = false;
 
 }
-// TODO --> Option to absorb colliding planets
 // TODO --> De-accelerate planets that have absorbed
 // TODO --> Spawn meteor
 function reset() {
@@ -28,7 +27,7 @@ function randNum(min, max) {
     return Math.random() * (max - min) + min;
 }
 function setup() {
-    for (var i = 0; i < 500; i++) {
+    for (var i = 0; i < 1000; i++) {
         //planetList.push(new Planet(randNum(0, canvasWidth), randNum(0, canvasHeight), randNum(3, 17)));
         planetList.push(new Planet(randNum(generateStartX, generateWidth), randNum(generateStartY, generateHeight), randNum(3, 17)));
     }
@@ -37,7 +36,7 @@ function setup() {
 function addPlanet(event) {
     xPos = event.clientX;
     yPos = event.clientY;
-    planetList.push(new Planet(xPos, yPos, randNum(3, 17)));
+    planetList.push(new Planet(xPos, yPos, randNum(1, 15)));
 
 }
 
@@ -46,19 +45,18 @@ function update() {
         planetList[i].move(planetList);
 
         //Delete planets outside of canvas
-        if (planetList[i].getPosition()[0] > canvasWidth) {
+        if (planetList[i].getPosition()[0] > canvasWidth + 500) {
             planetList.splice(i, 1);
         }
-        if (planetList[i].getPosition()[0] < 0) {
+        if (planetList[i].getPosition()[0] < 0 - 500) {
             planetList.splice(i, 1);
         }
-        if (planetList[i].getPosition()[1] > canvasHeight) {
+        if (planetList[i].getPosition()[1] > canvasHeight + 500)  {
             planetList.splice(i, 1);
         }
-        if (planetList[i].getPosition()[1] < 0) {
+        if (planetList[i].getPosition()[1] < 0 - 500) {
             planetList.splice(i, 1);
         }
-
 
         // Absorbing lesser planets
         if (absorption == true) {
@@ -66,7 +64,15 @@ function update() {
                 var planets = planetList[i].getCollidingPlanets(planetList);
                 for (var j = 0; j < planets.length; j++) {
                     var disposal = planetList.indexOf(planets[j]);
+                    planetList[i].addMass(planets[j].getMass());
+                    
+                    //Decreasing velocity on impact
+                    var velX = planetList[i].getVelocity()[0] / 2;
+                    var velY = planetList[i].getVelocity()[1] / 2;
+                    planetList[i].setVelocity(velX, velY);
+
                     planetList.splice(disposal, 1);
+                    
                 }
             }
         }

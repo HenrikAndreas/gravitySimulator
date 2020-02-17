@@ -5,8 +5,8 @@ class Planet {
         this.position = [xPos, yPos];
         this.velocity = [0, 0];
         this.acceleration = [0, 0];
-        this.maxVelocity = 8;
-        this.radius = this.mass * 0.35;
+        this.maxVelocity = 11;
+        this.radius = 2 + this.mass * 0.0025;
     }
 
     move(planetList) {
@@ -82,6 +82,20 @@ class Planet {
         return force;
     }
 
+    collision(planet) {
+        var force = [(this.position[0] - planet.getPosition()[0]),
+            (this.position[1] - planet.getPosition()[1])];
+        var distance = Math.sqrt(Math.pow(force[0], 2) + Math.pow(force[1], 2));
+        // Magnitude
+        force[0] = force[0] / distance;
+        force[1] = force[1] / distance;
+        // Strength
+        force[0] = force[0] * planet.getMass() * planet.getAcceleration()[0] * 10;
+        force[1] = force[1] * planet.getMass() * planet.getAcceleration()[1] * 10;
+        return force;
+
+    }
+
     applyForce(force) {
         //Newtons second law = F=ma --> a=F/m
         var actualForce = [force[0] / this.mass, force[1] / this.mass]
@@ -100,6 +114,10 @@ class Planet {
     }
     getRadius() {
         return this.radius;
+    }
+    addMass(mass) {
+        this.mass += mass;
+        this.radius = 2 + this.mass * 0.0025;
     }
     getMass() {
         return this.mass;
