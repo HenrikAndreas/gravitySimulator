@@ -27,7 +27,12 @@ function randNum(min, max) {
     return Math.random() * (max - min) + min;
 }
 function setup() {
-    for (var i = 0; i < 1000; i++) {
+    if (absorption) {
+        var planetNum = 1000;
+    } else {
+        var planetNum = 2000;
+    }
+    for (var i = 0; i < planetNum; i++) {
         //planetList.push(new Planet(randNum(0, canvasWidth), randNum(0, canvasHeight), randNum(3, 17)));
         planetList.push(new Planet(randNum(generateStartX, generateWidth), randNum(generateStartY, generateHeight), randNum(3, 17)));
     }
@@ -67,9 +72,10 @@ function update() {
                     planetList[i].addMass(planets[j].getMass());
                     
                     //Decreasing velocity on impact
-                    var velX = planetList[i].getVelocity()[0] / 2;
-                    var velY = planetList[i].getVelocity()[1] / 2;
+                    var velX = planetList[i].getVelocity()[0] / (planets[j].getVelocity()[0] * planets[j].getMass());
+                    var velY = planetList[i].getVelocity()[1] / (planets[j].getVelocity()[1] * planets[j].getMass());
                     planetList[i].setVelocity(velX, velY);
+                    
 
                     planetList.splice(disposal, 1);
                     

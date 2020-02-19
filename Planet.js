@@ -5,8 +5,8 @@ class Planet {
         this.position = [xPos, yPos];
         this.velocity = [0, 0];
         this.acceleration = [0, 0];
-        this.maxVelocity = 11;
-        this.radius = 2 + this.mass * 0.0025;
+        this.maxVelocity = 15;
+        this.radius = 1 + this.mass * 0.004; //Currently best sizes> 2 + this.mass * 0.0025
     }
 
     move(planetList) {
@@ -117,7 +117,7 @@ class Planet {
     }
     addMass(mass) {
         this.mass += mass;
-        this.radius = 2 + this.mass * 0.0025;
+        this.radius = 1 + this.mass * 0.004;
     }
     getMass() {
         return this.mass;
