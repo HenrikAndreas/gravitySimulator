@@ -106,7 +106,7 @@ class Planet {
     draw(graphics) {
         graphics.beginPath();
         graphics.arc(this.getPosition()[0], this.getPosition()[1], this.radius, 0, 2* Math.PI);
-        graphics.fillStyle = "#003fb5";
+        graphics.fillStyle = "#8ab2f2";
         graphics.fill();
         graphics.closePath();
 

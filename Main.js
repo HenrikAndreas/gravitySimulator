@@ -1,9 +1,11 @@
 var canvas = document.getElementById("mainCanvas");
 var graphics = canvas.getContext("2d");
+canvas.width = document.body.clientWidth * 0.8;
+canvas.height = document.body.clientHeight * 0.8;
 var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
-var generateWidth = 1080;
-var generateHeight = 720;
+var generateWidth = canvasWidth;
+var generateHeight = canvasHeight;
 var generateStartX = (canvasWidth / 2) - (generateWidth / 2);
 var generateStartY = (canvasHeight / 2) - (generateHeight / 2);
 var planetList = [];
@@ -28,9 +30,9 @@ function randNum(min, max) {
 }
 function setup() {
     if (absorption) {
-        var planetNum = 1000;
+        var planetNum = 500;
     } else {
-        var planetNum = 2000;
+        var planetNum = 1900;
     }
     for (var i = 0; i < planetNum; i++) {
         //planetList.push(new Planet(randNum(0, canvasWidth), randNum(0, canvasHeight), randNum(3, 17)));
@@ -71,9 +73,9 @@ function update() {
                     var disposal = planetList.indexOf(planets[j]);
                     planetList[i].addMass(planets[j].getMass());
                     
-                    //Decreasing velocity on impact
-                    var velX = planetList[i].getVelocity()[0] / (planets[j].getVelocity()[0] * planets[j].getMass());
-                    var velY = planetList[i].getVelocity()[1] / (planets[j].getVelocity()[1] * planets[j].getMass());
+                    //Decreasing velocity (based on mass) on impact
+                    var velX = planetList[i].getVelocity()[0] / ((planets[j].getVelocity()[0] * planets[j].getMass()) / 2);
+                    var velY = planetList[i].getVelocity()[1] / ((planets[j].getVelocity()[1] * planets[j].getMass())  / 2);
                     planetList[i].setVelocity(velX, velY);
                     
 
@@ -101,9 +103,6 @@ function render() {
     }
 }
 
-setInterval(update, 30);
-
-// Currently working the best
-// Min 3 - max 17 - radius = mass * 0.35 - maxVelocity = 8
+setInterval(update, 40);
 
 

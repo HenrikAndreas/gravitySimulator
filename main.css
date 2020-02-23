@@ -1,5 +1,10 @@
 body {
     background-color: #161616;
+    height: 105vh;
+    width: 124vw;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
 }
 
 .button {
@@ -11,5 +16,14 @@ body {
     padding: 20px;
     width: 10%;
     height: 3%;
+}
 
+
+
+#buttonDiv {
+    width: 100%;
+}
+
+li {
+    display: inline;
 }
