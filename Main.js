@@ -29,7 +29,7 @@ function loopSpace() {
         loopSpaceButton.textContent = "Disable Looping";
         return;
     }
-    loopSpaceBool = true;
+    loopSpaceBool = false;
     loopSpaceButton.textContent = "Enable Looping";
 }
 
