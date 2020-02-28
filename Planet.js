@@ -6,7 +6,7 @@ class Planet {
         this.velocity = [0, 0];
         this.acceleration = [0, 0];
         this.maxVelocity = 15;
-        this.radius = 1 + this.mass * 0.004; //Currently best sizes> 2 + this.mass * 0.0025
+        this.radius = 1 + this.mass * 0.008; //Currently best sizes> 2 + this.mass * 0.004
     }
 
     move(planetList) {
@@ -117,7 +117,7 @@ class Planet {
     }
     addMass(mass) {
         this.mass += mass;
-        this.radius = 1 + this.mass * 0.004;
+        this.radius = 1 + this.mass * 0.008;
     }
     getMass() {
         return this.mass;
@@ -128,6 +128,7 @@ class Planet {
     getPosition() {
         return this.position;
     }
+   
     getVelocity() {
         return this.velocity;
     }
