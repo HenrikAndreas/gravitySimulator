@@ -68,7 +68,7 @@ class Planet {
             force[0] = force[0] / distance;
             force[1] = force[1] / distance;
 
-            var g = 1.5; //Gravitational constant --> Modified value
+            var g = 1; //Gravitational constant --> Modified value
             var strength = (g * (this.mass * planet.getMass()) / Math.pow(distance, 2)); //Formula for gravitational pull
             
             // Vector that implies the gravitational force between bodies

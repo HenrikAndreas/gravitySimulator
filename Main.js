@@ -14,6 +14,16 @@ var planetList = [];
 var absorption = false;
 var loopSpaceBool = false;
 
+
+// On buttonClick --> Add new planet
+function addPlanet(event) {
+    
+    xPos = event.clientX;
+    yPos = event.clientY;
+    planetList.push(new Planet(xPos, yPos, randNum(1, 15)));
+
+}
+
 function setAbsorption() {
     if (absorption == false) {
         absorption = true;
@@ -50,14 +60,9 @@ function setup() {
         //planetList.push(new Planet(randNum(0, canvasWidth), randNum(0, canvasHeight), randNum(3, 17)));
         planetList.push(new Planet(randNum(generateStartX, generateWidth), randNum(generateStartY, generateHeight), randNum(3, 17)));
     }
-}
-// On buttonClick --> Add new planet
-function addPlanet(event) {
-    xPos = event.clientX;
-    yPos = event.clientY;
-    planetList.push(new Planet(xPos, yPos, randNum(1, 15)));
 
 }
+
 
 function update() {
     for (var i = 0; i < planetList.length; i++) {
@@ -82,15 +87,21 @@ function update() {
 
             if (planetList[i].getPosition()[0] > canvasWidth) {
                 planetList[i].position[0] = 0;
+                planetList[i].setVelocity(0, 0);
             }
             if (planetList[i].getPosition()[0] < 0) {
                 planetList[i].position[0] = canvasWidth;
+                planetList[i].setVelocity(0, 0);
             }
             if (planetList[i].getPosition()[1] > canvasHeight) {
                 planetList[i].position[1] = 0;
+                planetList[i].setVelocity(0, 0);
+
             }
             if (planetList[i].getPosition()[1] < 0) {
                 planetList[i].position[1] = canvasHeight;
+                planetList[i].setVelocity(0, 0);
+
             }
             
         }
@@ -102,20 +113,16 @@ function update() {
                 for (var j = 0; j < planets.length; j++) {
                     var disposal = planetList.indexOf(planets[j]);
                     planetList[i].addMass(planets[j].getMass());
-                    // V = V + MV
+                    // Changing velocity on impact based on current velocities and masses
                     var velX = planetList[i].getVelocity()[0] + (planets[j].getVelocity()[0] * planets[j].getMass() / planetList[i].getMass()**2);
                     var velY = planetList[i].getVelocity()[1] + (planets[j].getVelocity()[1] * planets[j].getMass() / planetList[i].getMass()**2);
-                    //Decreasing velocity (based on mass) on impact
-                    // var velX = planetList[i].getVelocity()[0] / ((planets[j].getVelocity()[0] * planets[j].getMass()) / 4);
-                    // var velY = planetList[i].getVelocity()[1] / ((planets[j].getVelocity()[1] * planets[j].getMass())  / 4);
-                    planetList[i].setVelocity(velX, velY);
+
                     planetList.splice(disposal, 1);
                     
                 }
             }
         }
     }
-
     render();
 
 }
